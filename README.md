@@ -1,3 +1,4 @@
+# Commit after add new branch 'fix'  
 # Мой первый файл MD
 
 проверка изменения файла (First commit)
