@@ -7,7 +7,7 @@ cd is a shell builtin
 
 ## Task 2
 
-grep -c <some_string> <some_file>
+`grep -c <some_string> <some_file>`
 
 ## Task 3
 ```bash
