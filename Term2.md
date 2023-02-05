@@ -1,7 +1,8 @@
 ## Task 1
-
+```bash
 vagrant@vagrant:~$ type -a cd  
 cd is a shell builtin
+```
 если бы не была встроенной, то при запуске из bash выполнялась бы в новом процессе и по факту не выполняла бы свою функцию перехода в нужную директорию  
 
 ## Task 2
@@ -9,7 +10,7 @@ cd is a shell builtin
 grep -c <some_string> <some_file>
 
 ## Task 3
-
+```bash
 vagrant@vagrant:~$ ps p 1  
     PID TTY      STAT   TIME COMMAND  
       1 ?        Ss     0:03 /sbin/init
@@ -20,11 +21,13 @@ systemd   1 root  cwd   unknown                      /proc/1/cwd (readlink: Perm
 systemd   1 root  rtd   unknown                      /proc/1/root (readlink: Permission denied)  
 systemd   1 root  txt   unknown                      /proc/1/exe (readlink: Permission denied)  
 systemd   1 root NOFD                                /proc/1/fd (opendir: Permission denied) 
-
+````
 ## Task4
+```bash
 vagrant@vagrant:~$ tty  
 /dev/pts/0  
 vagrant@vagrant:$ ls 1 2>/dev/pts/1  
+````
 выводит в другую консоль ls: cannot access '1': No such file or directory
 
 ## Task 5
@@ -40,6 +43,7 @@ vagrant@vagrant:~$ bash 5>$1
 vagrant@vagrant:~$ echo netology > /proc/$$/fd/5  
 netology  
 дескриптор 5 перенаправлен в стандартный вывод, соответственно при ввод на дескриптор 5 переводит все в вывод  
+```bash
 vagrant@vagrant:~$ ls -lah /proc/$$/fd  
 total 0  
 dr-x------ 2 vagrant vagrant  0 Feb  4 21:56 .  
@@ -49,8 +53,9 @@ lrwx------ 1 vagrant vagrant 64 Feb  4 21:56 1 -> /dev/pts/0
 lrwx------ 1 vagrant vagrant 64 Feb  4 21:56 2 -> /dev/pts/0  
 lrwx------ 1 vagrant vagrant 64 Feb  4 22:08 255 -> /dev/pts/0  
 lrwx------ 1 vagrant vagrant 64 Feb  4 23:50 5 -> /dev/pts/0  
-
+```
 ## Task 8
+```bash
 vagrant@vagrant:~/testpipe$ ls -lah   
 total 8.0K  
 drwxrwxr-x 2 vagrant vagrant 4.0K Feb  5 19:53 .  
@@ -63,24 +68,25 @@ ls: cannot access 'testfile.txt': No such file or directory
 file1.txt  file2.txt  test.log  
 vagrant@vagrant:~/testpipe$ cat test.log   
 ls: cannot access 'testfile.txt': No such file or directory  
-
+```
 сделал листинг текущей директории, получил ошибку на отсутствие файла testfile,
 сохранил это сообщение в test.log  
 обычный вывод ls текущей директории так же сохранился в stdout
 
 ## Task 9
 
-cat /proc/$$/environ выводит переменные окружения текущего процесса  
-так же эти данные можно получить через коменду env  
+`cat /proc/$$/environ` выводит переменные окружения текущего процесса  
+так же эти данные можно получить через коменду `env`  
 
 ## Task 10
+```bash
 man proc  
 -N  
 &/proc\/\[pid\]\/cmdline  
 &+ENTER  
 :274 g  
 -n  
-
+```
  /proc/[pid]/cmdline  
               This read-only file holds the complete command line for the process,  un‐
               less  the  process  is a zombie.  In the latter case, there is nothing in
@@ -125,16 +131,18 @@ sse - древняя, sse4.2 - последняя
 ## Task 12
 
 нужно добавить ключ -t  
+```bash
 vagrant@vagrant:~$ ssh -t localhost 'tty'  
 vagrant@localhost's password:   
 /dev/pts/1  
 Connection to localhost closed.  
+```
 
 ## Task 13
 
 попробовал, с командой top нормально работает, но вот с командой sngrep наблюдаются сложности
 
-к примеру sngrep port 5060 -H udp:10.1.2.8:9060 -N -r -R &  - это команда для мониторинга sip траффика и отправки hep пакетов на сервер  
+к примеру `sngrep port 5060 -H udp:10.1.2.8:9060 -N -r -R &`  - это команда для мониторинга sip траффика и отправки hep пакетов на сервер  
 в bg работает, делаю disown, перехожу в screen, делаю reptyr - получаю следующую картину  
 root@ts1:/home/ingener# reptyr 12450  
 [+] Allocated scratch page: b7730000  
@@ -149,13 +157,13 @@ root@ts1:/home/ingener# reptyr 12450
 [+] Change pgid for pid 12450  
 [+] Did setsid()  
 [+] Set the controlling tty  
-Dialog count: 305  
+`Dialog count: 305`  
 
-Dialog count: 305 - это вывод самой команды sngrep, т.е в целом она работает, перенеслась в screen, но нет возможности ей управлять и вообще ввести какие то комнды консольные
+`Dialog count: 305` - это вывод самой команды sngrep, т.е в целом она работает, перенеслась в screen, но нет возможности ей управлять и вообще ввести какие то комнды консольные
 
 Сtrl-a d - нормально детачит окно и возвращается в родительскую консоль
 
 ## Task 14
-Команда echo встроенная, соответственно выоплняется в том же процессе(bash) с теми же правами.  
-Команда tee не встроенная, соответственно запускается в дочернем процессе, и если запускается из-под sudo, то с правами root, что позволяет ей изменять файлы в домашней папке root
+Команда `echo` встроенная, соответственно выоплняется в том же процессе(bash) с теми же правами.  
+Команда `tee` не встроенная, соответственно запускается в дочернем процессе, и если запускается из-под sudo, то с правами root, что позволяет ей изменять файлы в домашней папке root
 
