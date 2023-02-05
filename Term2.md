@@ -38,17 +38,17 @@ cat test > test1 - команда cat передаст свой вывод со�
  
 vagrant@vagrant:~$ bash 5>$1  
 vagrant@vagrant:~$ echo netology > /proc/$$/fd/5  
-netology
-дескриптор 5 перенаправлен в стандартный вывод, соответственно при ввод на дескриптор 5 переводит все в вывод
-vagrant@vagrant:~$ ls -lah /proc/$$/fd
-total 0
-dr-x------ 2 vagrant vagrant  0 Feb  4 21:56 .
-dr-xr-xr-x 9 vagrant vagrant  0 Feb  4 21:56 ..
-lrwx------ 1 vagrant vagrant 64 Feb  4 21:56 0 -> /dev/pts/0
-lrwx------ 1 vagrant vagrant 64 Feb  4 21:56 1 -> /dev/pts/0
-lrwx------ 1 vagrant vagrant 64 Feb  4 21:56 2 -> /dev/pts/0
-lrwx------ 1 vagrant vagrant 64 Feb  4 22:08 255 -> /dev/pts/0
-lrwx------ 1 vagrant vagrant 64 Feb  4 23:50 5 -> /dev/pts/0
+netology  
+дескриптор 5 перенаправлен в стандартный вывод, соответственно при ввод на дескриптор 5 переводит все в вывод  
+vagrant@vagrant:~$ ls -lah /proc/$$/fd  
+total 0  
+dr-x------ 2 vagrant vagrant  0 Feb  4 21:56 .  
+dr-xr-xr-x 9 vagrant vagrant  0 Feb  4 21:56 ..  
+lrwx------ 1 vagrant vagrant 64 Feb  4 21:56 0 -> /dev/pts/0  
+lrwx------ 1 vagrant vagrant 64 Feb  4 21:56 1 -> /dev/pts/0  
+lrwx------ 1 vagrant vagrant 64 Feb  4 21:56 2 -> /dev/pts/0  
+lrwx------ 1 vagrant vagrant 64 Feb  4 22:08 255 -> /dev/pts/0  
+lrwx------ 1 vagrant vagrant 64 Feb  4 23:50 5 -> /dev/pts/0  
 
 ## Task 8
 vagrant@vagrant:~/testpipe$ ls -lah   
