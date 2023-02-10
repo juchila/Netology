@@ -21,7 +21,11 @@ openat(AT_FDCWD, "/etc/magic", O_RDONLY) = 3
 ## Task 3
 ```bash
 lsof -p <PID> | grep deleted -  смотрим, какие файлы удалены, но запись продолжается
-echo > filename
+hard link на файл удален, но у процесса в директории /proc/<PID>/fd будет дескриптор, например:
+lrwx------ 1 root root 64 Feb 10 14:06 5 -> /tmp/filename (deleted)
+ну и, собственно, возвращаем файл обратно с пустым содержанием:
+echo > /path/filename или  touch /path/filename
+возможно потребуется chown, если процесс запущен не от root
 ```
 
 ## Task 4
