@@ -20,7 +20,8 @@ openat(AT_FDCWD, "/etc/magic", O_RDONLY) = 3
 
 ## Task 3
 ```bash
-echo > log.log
+lsof -p <PID> | grep deleted -  смотрим, какие файлы удалены, но запись продолжается
+echo > filename
 ```
 
 ## Task 4
