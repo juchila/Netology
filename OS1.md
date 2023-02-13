@@ -43,6 +43,25 @@ PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
 
 данные восстановились, но, как я понял, не обновляются, т.е данные можно вытащить, но придется каждый раз копировать их,
 ну или перезапускать процесс, для создания ссылки на новый файл.
+
+для обнуления данных можно использовать команды:
+1. echo '' > /proc/7766/fd/1
+2. cat /dev/null > /proc/7766/fd/1 
+но тут я столкнулся с тем, что обнуления не происходит:
+sudo cat /dev/null > /proc/7766/fd/1 - не обнуляет место, ругается на отсутствие разрешений
+vagrant@vagrant:~$ sudo cat /dev/null > /proc/7766/fd/1
+-bash: /proc/7997/fd/1: Permission denied
+если делать sudo bash -c 'cat /dev/null > /proc/7766/fd/1' , то якобы без ошибок, но обнуления не происходит
+ping    7766 vagrant    1w   REG  253,0   185482 1317153 /home/vagrant/test (deleted)
+занятое место только увеличивается. И куда копать - не понятно
+попробовал strace выполнить
+strace sudo bash -c 'cat /dev/null > /proc/7766/fd/1'
+write(2, "effective uid is not 0, is /usr/"..., 133effective uid is not 0, is /usr/bin/sudo on a file system with the 'nosuid' option set or an NFS file system without root privileges?) = 133
+write(2, "\n", 1
+)                       = 1
+exit_group(1)                           = ?
++++ exited with 1 +++
+но ясности особо не внесло
 ```
 
 ## Task 4
