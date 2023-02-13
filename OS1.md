@@ -22,10 +22,27 @@ openat(AT_FDCWD, "/etc/magic", O_RDONLY) = 3
 ```bash
 lsof -p <PID> | grep deleted -  смотрим, какие файлы удалены, но запись продолжается
 hard link на файл удален, но у процесса в директории /proc/<PID>/fd будет дескриптор, например:
-lrwx------ 1 root root 64 Feb 10 14:06 5 -> /tmp/filename (deleted)
-ну и, собственно, возвращаем файл обратно с пустым содержанием:
-echo > /path/filename или  touch /path/filename
-возможно потребуется chown, если процесс запущен не от root
+vagrant@vagrant:~$ ps aux | grep ping
+vagrant     7766  0.0  0.0   7092   928 pts/0    S    16:57   0:00 ping 127.0.0.1
+vagrant@vagrant:~$ sudo lsof -p 7766 | grep delete
+ping    7766 vagrant    1w   REG  253,0   180441 1310814 /home/vagrant/test (deleted)
+vagrant@vagrant:~$ cat test
+cat: test: No such file or directory
+vagrant@vagrant:~$ sudo cat /proc/7766/fd/1 > /home/vagrant/test
+vagrant@vagrant:~$ cat test
+PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=2.27 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.028 ms
+64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.056 ms
+64 bytes from 127.0.0.1: icmp_seq=4 ttl=64 time=0.037 ms
+64 bytes from 127.0.0.1: icmp_seq=5 ttl=64 time=0.040 ms
+64 bytes from 127.0.0.1: icmp_seq=6 ttl=64 time=0.033 ms
+64 bytes from 127.0.0.1: icmp_seq=7 ttl=64 time=0.040 ms
+64 bytes from 127.0.0.1: icmp_seq=8 ttl=64 time=0.029 ms
+64 bytes from 127.0.0.1: icmp_seq=9 ttl=64 time=0.047 ms
+
+данные восстановились, но, как я понял, не обновляются, т.е данные можно вытащить, но придется каждый раз копировать их,
+ну или перезапускать процесс, для создания ссылки на новый файл.
 ```
 
 ## Task 4
