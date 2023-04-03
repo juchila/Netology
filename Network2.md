@@ -1,6 +1,6 @@
 ## Task 1
 ![img_40.png](img_40.png)
-также можно использовать ifconfig (Linux) или ipconfig(Windows)
+также можно использовать ifconfig (Linux) или ipconfig(Windows)  
 есть утилита nmtui для настройки через NetworkManager
 
 ## Task 2
