@@ -63,7 +63,7 @@ vagrant@vagrant:~$ ulimit -n
 Если переносить bash - то тут все корректно показывает.
 
 #### Update 2
-![img_31.png](img_31.png)
+![img_31.png](img_31.png)  
 при попытке входа в сам процесс sleep - никуда не входит вообще
 
 ## Task 7
