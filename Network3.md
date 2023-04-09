@@ -11,6 +11,7 @@ after add route
 
 ## Task 3&4
 ![img_46.png](img_46.png)
+![img_47.png](img_47.png)
 dns(systemd-resolve) - использует 53 порт tcp&udp
 ssh сервер использует порт 22/tcp
 
