@@ -16,3 +16,4 @@ dns(systemd-resolve) - использует 53 порт tcp&udp
 ssh сервер использует порт 22/tcp
 
 ## Task 5
+![netdiagram()]
