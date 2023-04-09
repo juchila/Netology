@@ -66,6 +66,10 @@ vagrant@vagrant:~$ ulimit -n
 ![img_31.png](img_31.png)  
 вот вывод при попытке входа в сам процесс sleep
 
+#### Update 3
+![img_47.png](img_47.png)  
+вроде норм сейчас?
+
 ## Task 7
 ```
 :(){ :|:& };: - Bash fork() Bomb
