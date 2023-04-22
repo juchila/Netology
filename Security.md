@@ -28,3 +28,10 @@ ssl включил, сертификат установлен
 ## Task 7
 ![img_54.png](img_54.png)
 ![img_55.png](img_55.png)
+
+## Task 8
+![img_58.png](img_58.png)
+
+## Task 9
+![img_57.png](img_57.png)  
+мне дополнительно еще нужны порты для sip и 8080
