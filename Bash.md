@@ -90,7 +90,22 @@ done
 ### Ваш скрипт:
 
 ```bash
-???
+#!/usr/bin/env bash
+
+echo> log
+hosts=(192.168.0.1 173.194.222.113 87.250.250.242)
+for ((i=0; i<5; i++))
+ do
+  for x in ${hosts[@]}
+   do
+    curl --connect-timeout 3 http://$x
+    if (( $? == 0 ))
+    then
+      echo "host $x available" >> log
+    else echo "host $x not available" >> log
+    fi
+   done
+ done
 ```
 
 ---
@@ -101,7 +116,30 @@ done
 ### Ваш скрипт:
 
 ```bash
-???
+#!/usr/bin/env bash
+
+echo> log
+declare -i br=0
+hosts=(192.168.0.1 173.194.222.113 87.250.250.242)
+while :
+ do
+  for x in ${hosts[@]}
+   do
+    curl --connect-timeout 3 http://$x
+    if (( $? == 0 ))
+    then
+     echo "host $x available" >> log
+    else
+     echo "host $x not available" > error
+     br=1
+     break
+    fi
+   done
+ if ((br==1))
+ then
+   break
+ fi
+ done
 ```
 
 ---
