@@ -21,3 +21,18 @@ test "" = "$(grep '\[04-script-01-bash\]' "$1" )" || {
 	echo "test $1"
 	exit 1
 }
+MSG_FILE=$1
+FILE_CONTENT="$(cat $MSG_FILE)"
+# Initialize constants here
+export REGEX='(Add: |Created: |Fix: |Update: |Rework: )'
+export ERROR_MSG="Commit message format must match regex \"${REGEX}\""
+if [[ $FILE_CONTENT =~ $REGEX ]]; then
+ printf "${BGreen}Good commit!${Color_Off}"
+else
+  printf "${BRed}Bad commit ${BBlue}\"$FILE_CONTENT\"\n"
+ printf "${BYellow}$ERROR_MSG\n"
+ printf "commit-msg hook failed (add --no-verify to bypass)\n"
+
+ exit 1
+fi
+exit 0

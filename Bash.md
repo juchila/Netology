@@ -154,7 +154,22 @@ ____
 ### Ваш скрипт:
 
 ```bash
-???
+#!/usr/bin/env bash
+txt=$(cat $1)
+echo "size $txt ${#txt}"
+#if (($(stat -c%s "$1") < 30))
+if (( ${#txt}<30 ))
+then
+ if [[ $txt =~ '[04-script-01-bash]' ]]
+ then
+  echo "Right format commit $txt"
+  exit 0
+ else
+  echo "Not right format commit $txt"
+ fi
+else echo "file too big"
+fi
+exit 1
 ```
 
 ----
