@@ -160,7 +160,7 @@ echo "size $txt ${#txt}"
 #if (($(stat -c%s "$1") < 30))
 if (( ${#txt}<30 ))
 then
- if [[ $txt =~ '[04-script-01-bash]' ]]
+ if [[ $txt =~ (\[04-script-01-bash\]+) ]]
  then
   echo "Right format commit $txt"
   exit 0

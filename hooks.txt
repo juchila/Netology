@@ -17,18 +17,11 @@
 
 # This example catches duplicate Signed-off-by lines.
 
-<<<<<<< HEAD
 test "" = "$(grep '\[04-script-01-bash\]' "$1" )" || {
 	echo "test $1"
 	exit 1
 }
-=======
-#test "" = "$(grep '\[04-script-01-bash\]' "$1" )" || {
-#	echo "test $1"
-#	exit 1
-#}
 
->>>>>>> cefcf7f ([04-script-01-bash])
 MSG_FILE=$1
 FILE_CONTENT="$(cat $MSG_FILE)"
 # Initialize constants here
@@ -40,11 +33,6 @@ else
   printf "${BRed}Bad commit ${BBlue}\"$FILE_CONTENT\"\n"
  printf "${BYellow}$ERROR_MSG\n"
  printf "commit-msg hook failed (add --no-verify to bypass)\n"
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> cefcf7f ([04-script-01-bash])
  exit 1
 fi
 exit 0
