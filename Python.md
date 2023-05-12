@@ -174,9 +174,12 @@ for h in hosts:
 ### Вывод скрипта при запуске во время тестирования:
 
 ```
-{'drive.google.com': '173.194.222.194', 'mail.google.com': '209.85.233.83', 'google.com': '108.177.14.101'}
+Прошлые значения:
+{"drive.google.com": "173.194.222.194", "mail.google.com": "209.85.233.17", "google.com": "108.177.14.101"}
+Новые значения:
 drive.google.com - 173.194.222.194
-mail.google.com - 209.85.233.83
+mail.google.com - 209.85.233.18
+[ERROR] mail.google.com IP mismatch: 209.85.233.17 209.85.233.18
 google.com - 108.177.14.138
 [ERROR] google.com IP mismatch: 108.177.14.101 108.177.14.138
 ```
