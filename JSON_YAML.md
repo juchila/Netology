@@ -161,13 +161,13 @@ google.com - 209.85.233.139
 ### JSON-файл(ы), который(е) записал ваш скрипт:
 
 ```json
-[oldip.json](https://github.com/juchila/Netology/blob/master/oldip.json)
+[json](oldip.json)
 ```
 
 ### YAML-файл(ы), который(е) записал ваш скрипт:
 
 ```yaml
-[oldip.yaml](https://github.com/juchila/Netology/blob/master/oldip.yaml)
+[yaml](oldip.yaml)
 ```
 
 ---
