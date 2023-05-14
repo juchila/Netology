@@ -111,7 +111,7 @@ for h in hosts:
         with open(file_yml, 'w') as f:
             f.write(yaml.dump(str1, explicit_start=True, explicit_end=True))
 ```
-Вариант 2, в котором, как я понимаю, ERROR не выскочит, так как полные списки адресов обычно не меняются(перед использованием требуется удалить файлы oldip.(json|yaml))
+Вариант 2, в котором, как я понимаю, ERROR не выскочит, так как полные списки адресов обычно не меняются(перед использованием требуется удалить файлы oldip.(json|yaml) от первой версии)
 ```python
 #! /usr/bin/env python3
 import json, yaml, os, socket
@@ -161,13 +161,13 @@ google.com - 209.85.233.139
 ### JSON-файл(ы), который(е) записал ваш скрипт:
 
 ```json
-[oldip.json](oldip.json)
+[oldip.json](oldip.json#JSON)
 ```
 
 ### YAML-файл(ы), который(е) записал ваш скрипт:
 
 ```yaml
-[oldip.yaml](oldip.yaml)
+[oldip.yaml](oldip.yaml#YAML)
 ```
 
 ---
