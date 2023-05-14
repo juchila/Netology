@@ -161,13 +161,13 @@ google.com - 209.85.233.139
 ### JSON-файл(ы), который(е) записал ваш скрипт:
 
 ```json
-[oldip.json](oldip.json#JSON)
+[oldip.json](/oldip.json)
 ```
 
 ### YAML-файл(ы), который(е) записал ваш скрипт:
 
 ```yaml
-[oldip.yaml](oldip.yaml#YAML)
+[oldip.yaml](oldip.txt)
 ```
 
 ---
