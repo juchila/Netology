@@ -294,8 +294,20 @@ with open(file_f, 'r') as f:
 
 ### Пример работы скрипта:
 
-???
+./py-format.py js.yml
+file js ext  .yml
+magic type JSON text data
+format is YAML
 
+./py-format.py json.json
+file json ext  .json
+magic type JSON text data
+format is JSON
+
+./py-format.py json.json
+file json ext  .json
+magic type ASCII text
+Expecting ',' delimiter: line 7 column 13 (char 183)
 ----
 
 ### Правила приёма домашнего задания

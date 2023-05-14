@@ -1,0 +1,11 @@
+#------------------------------------------------------------------------------
+# $File$
+# yaml:  file(1) magic for Yet Another Markup Language
+#
+
+0   string/b    %YAML\      YAML
+!:mime  text/yaml
+>6  regex       [12]\.[0-9] version %s document text
+
+0   string      ---\n      YAML document text
+!:mime  text/yaml
