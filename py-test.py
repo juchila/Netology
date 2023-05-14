@@ -8,7 +8,9 @@ print(some_dict)
 
 hosts=["drive.google.com","mail.google.com","google.com"]
 file_js="oldip.json"
-file_yml='oldip.yaml'
+file_yml="oldip.yaml"
+file_js="oldip2.json"
+file_yml="oldip2.yaml"
 str1 = {}
 rewr = False
 if os.path.exists(file_js):
@@ -20,18 +22,19 @@ else:
     oldip = {}
 print("Новые значения:")
 for h in hosts:
-    host=socket.gethostbyname(h)
-#    str0 = h+" - "+str(host[2])
-    str0 = h+" - "+host
+#    host=socket.gethostbyname(h)
+    host=socket.gethostbyname_ex(h)
+    str0 = h+" - "+str(host[2])
+#    str0 = h+" - "+host
     str1[h] = host
     print(str0)
     if len(oldip)>0:
-        if oldip.get(h)!=host:
-#         dfr=list(set(oldip[h][2]) ^ set(host[2]))
-#         print("[info] "+h+"different IP: "+str(dfr))
-#         if len(dfr)>0:
-#            print("[ERROR] "+h+" IP mismatch: "+str(dfr))
-            print("[ERROR] "+h+" IP mismatch: "+host)
+#        if oldip.get(h)!=host:
+         dfr=list(set(oldip[h][2]) ^ set(host[2]))
+         print("[info] "+h+" different IP: "+str(dfr))
+         if len(dfr)>0:
+            print("[ERROR] "+h+" IP mismatch: "+str(dfr))
+#            print("[ERROR] "+h+" IP mismatch: "+host)
             rewr = True
     else:
         rewr = True

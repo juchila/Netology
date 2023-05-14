@@ -111,7 +111,7 @@ for h in hosts:
         with open(file_yml, 'w') as f:
             f.write(yaml.dump(str1, explicit_start=True, explicit_end=True))
 ```
-Вариант 2, в котором, как я понимаю, ERROR не выскочит, так как полные списки адресов обычно не меняются(перед использованием требуется удалить файлы oldip.(json|yaml) от первой версии)
+Вариант 2, в котором, как я понимаю, ERROR не выскочит, так как полные списки адресов обычно не меняются
 ```python
 #! /usr/bin/env python3
 import json, yaml, os, socket
@@ -161,7 +161,7 @@ google.com - 209.85.233.139
 ### JSON-файл(ы), который(е) записал ваш скрипт:
 [json](oldip.json)
 ```json
-"drive.google.com": "64.233.165.194", "mail.google.com": "74.125.205.19", "google.com": "209.85.233.139"}
+{"drive.google.com": "64.233.165.194", "mail.google.com": "74.125.205.19", "google.com": "209.85.233.139"}
 ```
 
 ### YAML-файл(ы), который(е) записал ваш скрипт:
@@ -173,7 +173,70 @@ google.com: 209.85.233.139
 mail.google.com: 74.125.205.19
 ...
 ```
+### Вывод скрипта при запуске во время тестирования 2:
+```
+Прошлые значения {"drive.google.com": ["wide-docs.l.google.com", ["drive.google.com"], ["64.233.165.194"]], "mail.google.com": ["mail.google.com", [], ["74.125.205.19", "74.125.205.18", "74.125.205.17", "74.125.205.83"]], "google.com": ["google.com", [], ["209.85.233.139", "209.85.233.100", "209.85.233.102", "209.85.233.101", "209.85.233.113", "209.85.233.138"]]}
+Новые значения:
+drive.google.com - ['64.233.165.194']
+[info] drive.google.com different IP: []
+mail.google.com - ['74.125.205.19', '74.125.205.18', '74.125.205.17', '74.125.205.83']
+[info] mail.google.com different IP: []
+google.com - ['209.85.233.139', '209.85.233.100', '209.85.233.102', '209.85.233.101', '209.85.233.113', '209.85.233.138']
+[info] google.com different IP: []
+drive.google.com: !!python/tuple
+- wide-docs.l.google.com
+- - drive.google.com
+- - 64.233.165.194
+google.com: !!python/tuple
+- google.com
+- []
+- - 209.85.233.139
+  - 209.85.233.100
+  - 209.85.233.102
+  - 209.85.233.101
+  - 209.85.233.113
+  - 209.85.233.138
+mail.google.com: !!python/tuple
+- mail.google.com
+- []
+- - 74.125.205.19
+  - 74.125.205.18
+  - 74.125.205.17
+  - 74.125.205.83
+```
+### JSON-файл(ы), который(е) записал ваш скрипт:
+[json](oldip2.json)
+```json
+{"drive.google.com": ["wide-docs.l.google.com", ["drive.google.com"], ["64.233.165.194"]], "mail.google.com": ["mail.google.com", [], ["74.125.205.19", "74.125.205.18", "74.125.205.17", "74.125.205.83"]], "google.com": ["google.com", [], ["209.85.233.139", "209.85.233.100", "209.85.233.102", "209.85.233.101", "209.85.233.113", "209.85.233.138"]]}
+```
 
+### YAML-файл(ы), который(е) записал ваш скрипт:
+[yaml](oldip2.yaml)
+```yaml
+---
+drive.google.com: !!python/tuple
+- wide-docs.l.google.com
+- - drive.google.com
+- - 64.233.165.194
+google.com: !!python/tuple
+- google.com
+- []
+- - 209.85.233.139
+  - 209.85.233.100
+  - 209.85.233.102
+  - 209.85.233.101
+  - 209.85.233.113
+  - 209.85.233.138
+mail.google.com: !!python/tuple
+- mail.google.com
+- []
+- - 74.125.205.19
+  - 74.125.205.18
+  - 74.125.205.17
+  - 74.125.205.83
+...
+
+```
 ---
 
 ## Задание со звёздочкой* 
@@ -193,7 +256,40 @@ ____
 ### Ваш скрипт:
 
 ```python
-???
+#! /usr/bin/env python3
+
+import os, sys, json, yaml, re, magic
+
+mime = magic.Magic(mime=True)
+
+file_f=sys.argv[1]
+fn=os.path.splitext(file_f)[0]
+ext=os.path.splitext(file_f)[1]
+some_dict = {}
+print("file "+fn+" ext  "+ext+"\nmagic type "+magic.from_file(file_f))
+with open(file_f, 'r') as f:
+    if ext==".json":
+        try:
+            some_dict = json.load(f)
+            print("format is JSON")
+            with open(fn+".yml",'w') as f:
+                f.write(yaml.dump(some_dict, explicit_start=True, explicit_end=True))
+        except json.JSONDecodeError as e:
+                print(e)
+#                print("File "+file_f+" is not JSON or YAML or file have a mistake")
+    elif re.match('(\.yaml|\.yml)',ext):
+        try:
+            some_dict = yaml.safe_load(f)
+            print("format is YAML")
+            with open(fn+".json",'w') as f:
+                f.write(json.dumps(some_dict))
+        except yaml.YAMLError as e:
+            print(e)
+#            print("File "+file_f+" is not YAML or JSON or file have a mistake")
+
+    else:
+        print("Not right extension")
+
 ```
 
 ### Пример работы скрипта:
