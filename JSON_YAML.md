@@ -159,15 +159,19 @@ google.com - 209.85.233.139
 ```
 
 ### JSON-файл(ы), который(е) записал ваш скрипт:
-
-```json
 [json](oldip.json)
+```json
+"drive.google.com": "64.233.165.194", "mail.google.com": "74.125.205.19", "google.com": "209.85.233.139"}
 ```
 
 ### YAML-файл(ы), который(е) записал ваш скрипт:
-
-```yaml
 [yaml](oldip.yaml)
+```yaml
+---
+drive.google.com: 64.233.165.194
+google.com: 209.85.233.139
+mail.google.com: 74.125.205.19
+...
 ```
 
 ---
