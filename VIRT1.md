@@ -24,4 +24,6 @@
 
 # Task 3
 1. KVM
-2. 
+2. Xen
+3. Hyper-V
+4. Docker
