@@ -8,7 +8,7 @@ file_f=sys.argv[1]
 fn=os.path.splitext(file_f)[0]
 ext=os.path.splitext(file_f)[1]
 some_dict = {}
-print("file "+fn+" ext  "+ext+"\nmagic type "+magic.from_file(file_f))
+print("file "+fn+" ext  "+ext+"\nmagic type "+magic.from_file(file_f, mime=False))
 with open(file_f, 'r') as f:
     if ext==".json":
         try:
